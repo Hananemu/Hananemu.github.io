@@ -1,20 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+   未命名.html
+   
+   Copyright 2023 79258 <79258@DESKTOP-938RT4R>
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+  
+  
+ -->
 
-<!doctype html>
 <head>
-<meta charset="OTF-8">
-<title>高考必背古诗文</title>
+<meta charset="utf-8" />
+<title>Game</title>
+<style type="text/css">
+  #box{
+	  background-color:#fc6; /*设置背景色*/
+	  margin:0 auto;  /*设置div块的标记自动水平居中*/
+	  height:40px;   /*设置高度属性为40像素*/
+  }
+  
+  #box ul{        /*设置列表显示风格为无，即不显示列表标记*/
+	  list-style:none;  
+  }
+  
+  #box ul li{
+	  width:80px;  /*设置列表元素的宽度为80像素*/
+	  height:40px;   /*设置列表元素高度为40像素*/
+	  line-height:40px; /*设置列表元素内的文字垂直方向居中*/
+	  text-align:center; /*设置列表元素内的文字水平方向居中*/
+	  float:left;  /*左浮动*/
+  }
+  
+  #box ul li.strong{
+	  font-weight:bold; /*设置选中列表元素内的文字加粗显示*/
+  }
+   
+   #box ul li:hover{      /*鼠标指针放到1i标记时1i所显示的样式*/
+      background-color:black;  /*设置列表元素的背景色为黑色*/
+      text-decoration:underline; /*设置列表元素的文字有下划线*/
+      cursor :pointer;   /*设置鼠标指针为手形*/
+  }
+  
+  #box ul li a{    /*选中#box内的u1内的li内的所有a标记*/
+      text-decoration: none ;  /*超链接指针文字无下划线*/
+      color:black;
+  }
+  
+  #box ul li:hover a{   /*选中鼠标所在的1i元素上的a标记*/
+      text-decoration :underline;  / *超链接指针文字有下划线*/
+      color:#fc6;
+  }
+ </style>
 </head>
-<body bgcolor= "blue"> 
-<hn align="center">
-<font size="5" color="red" face="楷书">
-<pre>
-《拟行路难》
-泻水置平地,各自东西南北流。
-人生亦有命,安能行叹复坐愁。
-酌酒以自宽,举杯断绝歌《路难》。
-心非木石岂无感,吞声踯躅不敢言。
-</Pre>
-</font>
-</hn>
+
+<body>
+<div id="box">
+<ul>
+   <1i class="strong" >游戏</li>
+   <1i>
+	   <a href="guess.css#guess">猜数字</a>
+   </1i>
+   <1i>未开发</li>
+   <li>未开发</li>
+</ul>
+</div>
 </body>
 </html>
