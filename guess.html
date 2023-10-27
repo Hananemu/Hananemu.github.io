@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <!--
    未命名.html
    
@@ -28,20 +28,20 @@
 <title>猜数字</title>
 <script>
   window.onload=function(){
-	  var myrandom=Math. floor(Math. random()*100);   //生成0~ 100的随机数
-	  var myBtn=document . getElementById("btn" );    //通过ID获取按钮对象
-	  var myInput=document . getElementById( "myIn"); //通过ID获取输人框对象
-	  var myDisplay=document . getElementById("display"); //获取显示对象
+	  var myrandom=Math.floor(Math. random()*100);   //生成0~ 100的随机数
+	  var myBtn=document.getElementById("btn");    //通过ID获取按钮对象
+	  var myInput=document.getElementById("myIn"); //通过ID获取输人框对象
+	  var myDisplay=document.getElementById("display"); //获取显示对象
 	  myBtn.onclick=function(){        //按钮增加单击事件函数
-		  myValue=myInput .value; //获取用户输人的数据
+		  myValue=myInput.value; //获取用户输人的数据
      //判断用户输入的不是数字数据，提示用户
-     if( isNaN(myValue)) myDisplay. innerHTML="请0- 100输人数字";
+     if(isNaN(myValue)) myDisplay.innerHTML="请0- 100输人数字";
      else{
 		 //输人数据大了，给用户提示
 		 if(myValue>myrandom) myDisplay.innerHTML="数据大了!”;
 		 //输入数据小了，给用户提示
-		 else if(myValue<myrandom)myDisplay. innerHTML="数据小了!”
-		 else myDisplay . innerHTML="恭喜您，猜对了!";
+		 else if(myValue<myrandom) myDisplay.innerHTML="数据小了!”
+		 else myDisplay.innerHTML="恭喜您，猜对了!";
 	 }
  }
 }
@@ -58,7 +58,7 @@
 <body>
 	<a name="guess"></a>
         <input type="text" id="myIn">
-	<input type="button" value="猜数" id="btn"/>
+	<input type="button" value="猜数" id="btn" />
 	<label id="display"></label>
   </body>
   </html>
