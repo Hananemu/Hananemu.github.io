@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <!--
    未命名.html
    
@@ -28,40 +28,62 @@
 <title>猜数字</title>
 <script>
   window.onload=function(){
-	  var myrandom=Math.floor(Math. random()*100);   //生成0~ 100的随机数
-	  var myBtn=document.getElementById("btn");    //通过ID获取按钮对象
-	  var myInput=document.getElementById("myIn"); //通过ID获取输人框对象
-	  var myDisplay=document.getElementById("display"); //获取显示对象
-	  myBtn.onclick=function(){        //按钮增加单击事件函数
-		  myValue=myInput.value; //获取用户输人的数据
+          var myrandom=Math. floor(Math. random()*100);   //生成0~ 100的随机数
+          var myBtn=document . getElementById("btn" );    //通过ID获取按钮对象
+          var myInput=document . getElementById( "myIn"); //通过ID获取输人框对象
+          var myDisplay=document . getElementById("display"); //获取显示对象
+          myBtn.onclick=function(){        //按钮增加单击事件函数
+                  myValue=myInput .value; //获取用户输入的数据
      //判断用户输入的不是数字数据，提示用户
-     if(isNaN(myValue)) myDisplay.innerHTML="请0- 100输人数字";
+     if( isNaN(myValue)) myDisplay. innerHTML="请0- 100输入数字";
      else{
-		 //输人数据大了，给用户提示
-		 if(myValue>myrandom) myDisplay.innerHTML="数据大了!";
-		 //输入数据小了，给用户提示
-		 else if(myValue<myrandom) myDisplay.innerHTML="数据小了!";
-		 else{
-       myDisplay.innerHTML="恭喜您，猜对了!";
-       myrandom=Math.floor(Math.random()*100);
-   }
-	 }
+                 //输人数据大了，给用户提示
+                 if(myValue>myrandom) myDisplay.innerHTML="数据大了!";
+                 //输入数据小了，给用户提示
+                 else if(myValue<myrandom)myDisplay. innerHTML="数据小了!"
+                 else if(myValun>100) myDisplay.innerHTML="请输入0-100间的整数"
+                 else myDisplay . innerHTML="恭喜您，猜对了!";
+                 myrandom=Math. floor(Math. random()*100);
+         }
  }
 }
 </script>
 <style>
 #display{
-	background-color:red;
-	color:white;p
-	font-size:16px;
-	font-weight:bold;
+        background-color:black;
+        color:white;
+        font-size:16px;
+        font-weight:bold;
 }
+#btn{
+font-size:25px;
+}
+
+#box{
+background:grey;
+height:300px;
+weight:300px;
+margin:0 auto;
+}
+#box input{
+position:relative;
+top:100px;
+left:100px;
+font-size:15px;
+}
+#box label{
+position:relative;
+top:150px;
+left:100px;}
 </style>
 </head>
 <body>
-	<a name="guess"></a>
-        <input type="text" id="myIn">
-	<input type="button" value="猜数" id="btn" />
-	<label id="display"></label>
+<div id="box">
+        <a name="guess"></a>
+        <h2 >请输入一个0-100的整数</h2>
+        <input type="text" id="myIn" ></p>
+        <input type="button" value="猜数" id="btn" />
+        <label id="display"></label>
+        </div>
   </body>
   </html>
