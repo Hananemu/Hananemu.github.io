@@ -42,8 +42,10 @@
                  //输入数据小了，给用户提示
                  else if(myValue<myrandom)myDisplay. innerHTML="数据小了!"
                  else if(myValun>100) myDisplay.innerHTML="请输入0-100间的整数"
-                 else myDisplay . innerHTML="恭喜您，猜对了!";
+                 else{
+                 myDisplay . innerHTML="恭喜您，猜对了!";
                  myrandom=Math. floor(Math. random()*100);
+}
          }
  }
 }
