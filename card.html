@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>抽卡模拟器</title>
+</head>
+<body>
+<a name="card"></a>
+    <h1>抽卡模拟器</h1>
+    <button onclick="Mycard()">抽卡</button>
+    <div id="record"></div>
+
+    <script>
+        let record= [];
+
+        function Mycard() {
+            // 模拟抽卡过程，可以根据需求自行修改
+            let result= Math.random() < 0.1 ? "获得五星up" : (0.1<Math.random()<0.4?"获得四星角色":"获得三星武器");
+
+            // 将抽卡结果添加到历史记录中
+            record.push(result);
+
+            // 更新历史记录显示
+            refresh();
+        }
+
+        function refresh() {
+            let container = document.getElementById("record");
+            container.innerHTML = "<h2>历史抽卡记录</h2>";
+            for (let i = record.length-1;i>=0;i--) {
+                container.innerHTML += `<p> ${i + 1}: ${record[i]}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
