@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EndlessDream</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    div {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    ul {
+      padding-left: 0;
+    }
+
+    li {
+      position: relative;
+      list-style: none;
+      background-color: black; /* 将背景颜色改为黑色 */
+      margin-bottom: 5px;
+    }
+
+    li > ul {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      margin-left: 5px;
+    }
+
+    li:hover ul {
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      display: block;
+      width: 120px;
+      font-size: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    a:hover {
+      background-color: black; /* 将背景颜色改为黑色 */
+      color: #277bff;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <ul>
+      <li>
+        <a href="#">我的世界</a>
+        <ul>
+          <li><a href="#">后台</a></li>
+          <li><a href="#">水友</a></li>
+          <li><a href="#">排行榜</a></li>
+        </ul>
+      </li>
+      <li><a href="#">工厂</a></li>
+    </ul>
+  </div>
+</body>
+</html>
