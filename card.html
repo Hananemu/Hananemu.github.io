@@ -1,35 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>抽卡模拟器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #record {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 80vw;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
+
 <body>
-<a name="card"></a>
+    <a name="card"></a>
     <h1>抽卡模拟器</h1>
     <button onclick="Mycard()">抽卡</button>
     <div id="record"></div>
 
     <script>
-        let record= [];
+        let record = [];
+        let currentPage = 1;
+        const pageSize = 10;
 
         function Mycard() {
-            // 模拟抽卡过程，可以根据需求自行修改
-            let result= Math.random() < 0.1 ? "获得五星up" : (0.1<Math.random()<0.4?"获得四星角色":"获得三星武器");
+            let result = Math.random() < 0.1 ? "获得五星up" : (0.1 < Math.random() && Math.random() < 0.4 ? "获得四星角色" : "获得三星武器");
 
-            // 将抽卡结果添加到历史记录中
-            record.push(result);
+            record.unshift(result); // Add new result to the beginning of the array
 
-            // 更新历史记录显示
             refresh();
         }
 
         function refresh() {
             let container = document.getElementById("record");
             container.innerHTML = "<h2>历史抽卡记录</h2>";
-            for (let i = record.length-1;i>=0;i--) {
-                container.innerHTML += `<p> ${i + 1}: ${record[i]}</p>`;
+
+            // Calculate start and end index based on current page and page size
+            let startIndex = (currentPage - 1) * pageSize;
+            let endIndex = currentPage * pageSize;
+
+            // Create table and header
+            let table = document.createElement("table");
+            let header = table.createTHead();
+            let row = header.insertRow(0);
+            let th = document.createElement("th");
+            th.textContent = "抽卡次数";
+            row.appendChild(th);
+            th = document.createElement("th");
+            th.textContent = "抽卡结果";
+            row.appendChild(th);
+
+            // Populate table with data
+            for (let i = startIndex; i < endIndex && i < record.length; i++) {
+                row = table.insertRow(-1);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                cell1.textContent = i + 1;
+                cell2.textContent = record[i];
+            }
+
+            container.appendChild(table);
+
+            // Add pagination buttons
+            let pagination = document.createElement("div");
+            pagination.innerHTML = `
+                <button onclick="prevPage()">上一页</button>
+                <span>第 ${currentPage} 页</span>
+                <button onclick="nextPage()">下一页</button>
+            `;
+
+            container.appendChild(pagination);
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                refresh();
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < Math.ceil(record.length / pageSize)) {
+                currentPage++;
+                refresh();
             }
         }
     </script>
 </body>
+
 </html>
