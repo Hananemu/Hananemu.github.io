@@ -2,67 +2,101 @@
 <html lang="en">
 
 <head>
-<meta charset="utf-8">
-<title>猜数字</title>
-<script>
-  window.onload=function(){
-          var myrandom=Math. floor(Math. random()*100);   //生成0~ 100的随机数
-          var myBtn=document . getElementById("btn" );    //通过ID获取按钮对象
-          var myInput=document . getElementById( "myIn"); //通过ID获取输人框对象
-          var myDisplay=document . getElementById("display"); //获取显示对象
-          myBtn.onclick=function(){        //按钮增加单击事件函数
-                  myValue=myInput .value; //获取用户输入的数据
-     //判断用户输入的不是数字数据，提示用户
-     if( isNaN(myValue)) myDisplay. innerHTML="请0- 100输入数字";
-     else{
-                 //输人数据大了，给用户提示
-                 if(myValue>myrandom) myDisplay.innerHTML="数据大了!";
-                 //输入数据小了，给用户提示
-                 else if(myValue<myrandom)myDisplay. innerHTML="数据小了!"
-                 else{
-                 myDisplay . innerHTML="恭喜您，猜对了!";
-                 myrandom=Math. floor(Math. random()*100);
-}
-         }
- }
-}
-</script>
-<style>
-#display{
-        background-color:black;
-        color:white;
-        font-size:16px;
-        font-weight:bold;
-}
-#btn{
-font-size:40px;
-}
+  <meta charset="utf-8">
+  <title>猜数字游戏</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
 
-#box{
-background:grey;
-height:300px;
-weight:300px;
-margin:0 auto;
-}
-#box input{
-position:relative;
-top:100px;
-left:100px;
-font-size:15px;
-}
-#box label{
-position:relative;
-top:150px;
-left:100px;}
-</style>
+    #box {
+      background: #808080;
+      height: 50vh;
+      width: 80vw;
+      margin: 10vh auto;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      color: #fff;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    #myIn {
+      font-size: 1.5em;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box; /* Ensure padding is included in the element's total width */
+      width: calc(100% - 20px); /* Subtract total padding from 100% width */
+    }
+
+    #btn {
+      font-size: 4vw;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px; /* Added margin */
+    }
+
+    #display {
+      display: none;
+      background-color: #333;
+      color: #fff;
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var myrandom = Math.floor(Math.random() * 100);
+      var myBtn = document.getElementById("btn");
+      var myInput = document.getElementById("myIn");
+      var myDisplay = document.getElementById("display");
+
+      myBtn.onclick = function () {
+        var myValue = myInput.value;
+
+        myDisplay.style.display = "none";
+
+        if (isNaN(myValue)) myDisplay.innerHTML = "请输入0-100之间的数字";
+        else {
+          if (myValue > myrandom) myDisplay.innerHTML = "数字太大了!";
+          else if (myValue < myrandom) myDisplay.innerHTML = "数字太小了!";
+          else {
+            myDisplay.innerHTML = "恭喜您，猜对了!";
+            myrandom = Math.floor(Math.random() * 100);
+          }
+          myDisplay.style.display = "block";
+        }
+      }
+    }
+  </script>
 </head>
+
 <body>
-<div id="box">
-        <a name="guess"></a>
-        <h2 >请输入一个0-100的整数</h2>
-        <input type="text" id="myIn" ></p>
-        <input type="button" value="猜数" id="btn" />
-        <label id="display"></label>
-        </div>
-  </body>
-  </html>
+  <div id="box">
+    <a name="guess"></a>
+    <h2>猜一个0-100的数字</h2>
+    <input type="text" id="myIn" placeholder="输入数字">
+    <br>
+    <input type="button" value="猜数" id="btn">
+    <br>
+    <label id="display"></label>
+  </div>
+</body>
+
+</html>
