@@ -1,76 +1,115 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>EndlessDream</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-    }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            background-color: #111;
+            padding-top: 20px;
+            display: none;
+            z-index: 1;
+            transition: 0.3s;
+        }
 
-    div {
-      position: absolute;
-      left: 0; /* 移至左边缘 */
-      top: 0; /* 移至顶部边缘 */
-    }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
 
-    ul {
-      padding-left: 0;
-    }
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
 
-    li {
-      position: relative;
-      list-style: none;
-      background-color: black; /* 将背景颜色改为黑色 */
-      margin-bottom: 5px;
-    }
+        .submenu {
+            padding-left: 15px;
+            display: none;
+        }
 
-    li > ul {
-      display: none;
-      position: absolute;
-      left: 100%;
-      top: 20px;
-      margin-left: 5px;
-    }
+        .submenu a {
+            font-size: 16px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
 
-    li:hover ul {
-      display: block;
-    }
+        .submenu a:hover {
+            color: #f1f1f1;
+        }
 
-    a {
-      text-decoration: none;
-      display: block;
-      width: 120px;
-      font-size: 20px;
-      text-align: center;
-      color: white;
-    }
+        #menuBtn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 2;
+            transition: 0.3s;
+        }
 
-    a:hover {
-      background-color: black; /* 将背景颜色改为黑色 */
-      color: #277bff;
-    }
-  </style>
+        .menuBtnVisible .sidebar {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-  <div>
-    <ul>
-      <li>
-        <a href="#">我的世界</a>
-        <ul>
-          <li><a href="#">后台</a></li>
-          <li><a href="#">水友</a></li>
-          <li><a href="#">排行榜</a></li>
-        </ul>
-      </li>
-      <li><a href="#">工厂</a></li>
-    </ul>
-  </div>
+
+<div id="menuBtn">&#9776; Menu</div>
+
+<div class="sidebar">
+    <a href="#">我的世界</a>
+    <div class="submenu">
+        <a href="#">后台</a>
+        <a href="#">水友</a>
+        <a href="#">排行榜</a>
+        <div class="submenu">
+          <a href="#">在线时长</a>
+         </div>
+    </div>
+    <a href="#">像素工厂</a>
+    <div class="submenu">
+        <a href="#">Contact 1</a>
+        <a href="#">Contact 2</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sidebar = document.querySelector('.sidebar');
+        const menuBtn = document.getElementById('menuBtn');
+
+        menuBtn.addEventListener('click', function () {
+            document.body.classList.toggle('menuBtnVisible');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.sidebar') && event.target !== menuBtn) {
+                document.body.classList.remove('menuBtnVisible');
+            }
+        });
+
+        const submenuItems = document.querySelectorAll('.submenu');
+
+        submenuItems.forEach(item => {
+            item.previousElementSibling.addEventListener('click', function () {
+                item.style.display = (item.style.display === 'block' || item.style.display === '') ? 'none' : 'block';
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
