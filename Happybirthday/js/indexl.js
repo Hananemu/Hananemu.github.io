@@ -1,9 +1,11 @@
-
 var S = {
   init: function () {
-    var m=0;
+    var m = 0;
     var action = window.location.href,
         i = action.indexOf('?a=');
+    var textArray = ['Hi 杨旭东', '小帅哥', '今年成年啦！', '生日快乐', 'happy birthday', '要开心每一天哦！', '准备好了吗！', '你的','赛博生日蛋糕','要来咯！'];
+    var textIndex = 0; // 当前文字索引
+    var startTime = 0; // 当前文字的开始时间
 
     S.Drawing.init('.canvas');
     document.body.classList.add('body--ready');
@@ -11,20 +13,35 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('Hi 杨旭东|小帅哥|生日快乐|准备好了吗|你的|赛博蛋糕要来咯|happy birthday|#countdown 3||');
+      S.UI.simulate(textArray[textIndex]); // 初始渲染第一句话
+      startTime = new Date().getTime(); // 记录开始时间
+      textIndex++; // 移动到下一句话
     }
 
     S.Drawing.loop(function () {
-            m++;
+      m++;
       S.Shape.render();
-      //console.log(m);
-      if(m==1800){
-        window.location.href="../html/BirthdayCake.html";
+
+      // 检查当前文字是否已经显示了2秒
+      var currentTime = new Date().getTime();
+      if (currentTime - startTime >= 2000) {
+        if (textIndex < textArray.length) {
+          // 如果还有未渲染的文字，渲染下一句并更新开始时间
+          S.UI.simulate(textArray[textIndex]);
+          startTime = currentTime; // 更新开始时间为当前时间
+          textIndex++;
+        } else {
+          // 所有文字都已渲染，等待一段时间后跳转页面
+          if (m >= 700) {
+            window.location.href = "../html/BirthdayCake.html";
+          }
+        }
       }
     });
 
   }
 };
+
 
 
 S.Drawing = (function () {
