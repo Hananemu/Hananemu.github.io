@@ -11,14 +11,14 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('Hi 木易巷|小朋友|生日快乐|happy birthday|#countdown 3||');
+      S.UI.simulate('Hi 杨旭东|小帅哥|恭喜你|今年你成年啦！|生日快乐|happy birthday|准备好了吗？|你的赛博蛋糕要来咯！|#countdown 3||');
     }
 
     S.Drawing.loop(function () {
             m++;
       S.Shape.render();
       //console.log(m);
-      if(m==700){
+      if(m==1000){
         window.location.href="../html/BirthdayCake.html";
       }
     });
