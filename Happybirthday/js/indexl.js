@@ -31,10 +31,9 @@ var S = {
           startTime = currentTime; // 更新开始时间为当前时间
           textIndex++;
         } else {
-          // 所有文字都已渲染，等待一段时间后跳转页面
-          if (m >= 700) {
-            window.location.href =" ../html/BirthdayCake.html";
-          }
+          // 所有文字都已渲染后跳转页面
+           window.location.href =" ../html/BirthdayCake.html";
+          
         }
       }
     });
