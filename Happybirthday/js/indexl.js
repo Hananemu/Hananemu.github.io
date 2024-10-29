@@ -3,7 +3,7 @@ var S = {
     var m = 0;
     var action = window.location.href,
         i = action.indexOf('?a=');
-        var textArray = ['Hi 杨旭东', '小帅哥','恭喜你！', '今年成年啦！', '生日快乐', 'happy birthday', '准备好了吗！', '你的','赛博生日蛋糕','要来咯！'];
+        var textArray = ['Hi 杨旭东', '小帅哥','恭喜你', '今年成年啦！', '生日快乐', 'happy birthday', '准备好了吗！', '你的','赛博生日蛋糕','要来咯！'];
     var textIndex = 0; // 当前文字索引
     var startTime = 0; // 当前文字的开始时间
     var countdown = null; // 倒计时
@@ -28,19 +28,23 @@ var S = {
       }
 
       // 检查是否所有文字都已显示
-      if (textIndex === textArray.length) {
-        if (countdown === null) {
-          // 开始倒计时
-          countdown = 3;
-          document.body.classList.add('body--countdown');
-          S.UI.simulate('3');
-        } else if (countdown === 0) {
+      if (textIndex === textArray.length && countdown === null) {
+        // 开始倒计时
+        countdown = 3;
+        displayCountdown(); // 显示倒计时
+      }
+
+      // 更新倒计时
+      if (countdown !== null && countdown > 0) {
+        var countdownTime = new Date().getTime();
+        if (countdownTime - startTime >= 1000) { // 每秒更新一次倒计时
+          countdown--;
+          displayCountdown();
+          startTime = countdownTime; // 更新开始时间为当前时间
+        }
+        if (countdown === 0) {
           // 倒计时结束，跳转到新页面
           window.location.href = "../html/BirthdayCake.html";
-        } else {
-          // 更新倒计时
-          countdown--;
-          S.UI.simulate(countdown);
         }
       }
     });
@@ -52,8 +56,14 @@ var S = {
         textIndex++;
       }
     }
+
+    function displayCountdown() {
+      S.UI.simulate(countdown); // 显示倒计时
+      startTime = new Date().getTime(); // 更新开始时间为当前时间
+    }
   }
 };
+
 
 
 
