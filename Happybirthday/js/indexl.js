@@ -11,14 +11,14 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('Hi 杨旭东|小帅哥|恭喜你今年你成年啦！|准备好了吗|你的赛博蛋糕要来咯！|happy birthday|#countdown 3||');
+      S.UI.simulate('Hi 杨旭东|小帅哥|恭喜你|今年你成年啦！|准备好了吗|赛博蛋糕要来咯|happy birthday|#countdown 3||');
     }
 
     S.Drawing.loop(function () {
             m++;
       S.Shape.render();
       //console.log(m);
-      if(m==1400){
+      if(m==1800){
         window.location.href="../html/BirthdayCake.html";
       }
     });
@@ -37,7 +37,7 @@ S.Drawing = (function () {
                      window.oRequestAnimationFrame      ||
                      window.msRequestAnimationFrame     ||
                      function(callback) {
-                       window.setTimeout(callback, 1800 / 60);
+                       window.setTimeout(callback, 2000 / 60);
                      };
 
   return {
