@@ -33,7 +33,7 @@ var S = {
         } else {
           // 所有文字都已渲染，等待一段时间后跳转页面
           if (m >= 700) {
-            window.location.href = "../html/BirthdayCake.html";
+            window.location.href =" ../html/BirthdayCake.html";
           }
         }
       }
