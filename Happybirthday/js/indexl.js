@@ -11,7 +11,7 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('Hi 杨旭东|小帅哥|恭喜你|今年你成年啦！|准备好了吗|赛博蛋糕要来咯|happy birthday|#countdown 3||');
+      S.UI.simulate('Hi 杨旭东|小帅哥|生日快乐|准备好了吗|你的|赛博蛋糕要来咯|happy birthday|#countdown 3||');
     }
 
     S.Drawing.loop(function () {
