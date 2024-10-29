@@ -3,7 +3,7 @@ var S = {
     var m = 0;
     var action = window.location.href,
         i = action.indexOf('?a=');
-        var textArray = ['Hi 杨旭东', '小帅哥', '今年成年啦！', '生日快乐', 'happy birthday', '要开心每一天哦！', '准备好了吗！', '你的','赛博生日蛋糕','要来咯！','3','2','1'];
+    var textArray = ['Hi 杨旭东', '小帅哥', '今年成年啦！', '生日快乐', 'happy birthday', '要开心每一天哦！', '准备好了吗！', '你的','赛博生日蛋糕','要来咯！','3','2','1'];
     var textIndex = 0; // 当前文字索引
     var startTime = 0; // 当前文字的开始时间
 
@@ -31,9 +31,9 @@ var S = {
           startTime = currentTime; // 更新开始时间为当前时间
           textIndex++;
         } else {
-          // 所有文字都已渲染后跳转页面
-           window.location.href =" ../html/BirthdayCake.html";
-          
+          // 所有文字都已渲染，立即跳转页面
+          window.location.href = "../html/BirthdayCake.html";
+          return; // 退出循环
         }
       }
     });
