@@ -9,7 +9,7 @@ var S = {
     document.body.classList.add('body--ready');
 
     if (i !== -1) {
-      S.UI.simulate(decodeURI(action).substring(i + 3));
+      S.UI.simulate(decodeURI(action).substring(i + 7));
     } else {
       S.UI.simulate('Hi 杨旭东|小帅哥|恭喜你|今年你成年啦！|生日快乐|happy birthday|准备好了吗？|你的赛博蛋糕要来咯！|#countdown 3||');
     }
