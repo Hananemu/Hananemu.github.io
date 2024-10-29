@@ -6,6 +6,7 @@ var S = {
     var textArray = ['Hi 杨旭东', '小帅哥', '今年成年啦！', '生日快乐', 'happy birthday', '要开心每一天哦！', '准备好了吗！', '你的','赛博生日蛋糕','要来咯！','3','2','1'];
     var textIndex = 0; // 当前文字索引
     var startTime = 0; // 当前文字的开始时间
+    var lastTextTime = 0; // 最后一条文字的开始时间
 
     S.Drawing.init('.canvas');
     document.body.classList.add('body--ready');
@@ -31,15 +32,21 @@ var S = {
           startTime = currentTime; // 更新开始时间为当前时间
           textIndex++;
         } else {
-          // 所有文字都已渲染，立即跳转页面
-          window.location.href = "../html/BirthdayCake.html";
-          return; // 退出循环
+          // 所有文字都已渲染，记录最后一条文字的开始时间
+          lastTextTime = currentTime;
         }
+      }
+
+      // 检查最后一条文字是否已经显示了1秒
+      if (lastTextTime > 0 && currentTime - lastTextTime >= 1000) {
+        window.location.href = "../html/BirthdayCake.html";
+        return; // 退出循环
       }
     });
 
   }
 };
+
 
 
 
