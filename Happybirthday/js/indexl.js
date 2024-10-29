@@ -3,9 +3,10 @@ var S = {
     var m = 0;
     var action = window.location.href,
         i = action.indexOf('?a=');
-    var textArray = ['Hi 杨旭东', '小帅哥', '今年成年啦！', '生日快乐', 'happy birthday', '要开心每一天哦！', '准备好了吗！', '你的','赛博生日蛋糕','要来咯！'];
+        var textArray = ['Hi 杨旭东', '小帅哥','恭喜你！', '今年成年啦！', '生日快乐', 'happy birthday', '准备好了吗！', '你的','赛博生日蛋糕','要来咯！'];
     var textIndex = 0; // 当前文字索引
     var startTime = 0; // 当前文字的开始时间
+    var countdown = null; // 倒计时
 
     S.Drawing.init('.canvas');
     document.body.classList.add('body--ready');
@@ -13,9 +14,7 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate(textArray[textIndex]); // 初始渲染第一句话
-      startTime = new Date().getTime(); // 记录开始时间
-      textIndex++; // 移动到下一句话
+      displayNextText(); // 初始渲染第一句话
     }
 
     S.Drawing.loop(function () {
@@ -24,21 +23,35 @@ var S = {
 
       // 检查当前文字是否已经显示了2秒
       var currentTime = new Date().getTime();
-      if (currentTime - startTime >= 2000) {
-        if (textIndex < textArray.length) {
-          // 如果还有未渲染的文字，渲染下一句并更新开始时间
-          S.UI.simulate(textArray[textIndex]);
-          startTime = currentTime; // 更新开始时间为当前时间
-          textIndex++;
+      if (currentTime - startTime >= 2000 && textIndex < textArray.length) {
+        displayNextText();
+      }
+
+      // 检查是否所有文字都已显示
+      if (textIndex === textArray.length) {
+        if (countdown === null) {
+          // 开始倒计时
+          countdown = 3;
+          document.body.classList.add('body--countdown');
+          S.UI.simulate('3');
+        } else if (countdown === 0) {
+          // 倒计时结束，跳转到新页面
+          window.location.href = "../html/BirthdayCake.html";
         } else {
-          // 所有文字都已渲染，等待一段时间后跳转页面
-          if (m >= 700) {
-            window.location.href = "../html/BirthdayCake.html";
-          }
+          // 更新倒计时
+          countdown--;
+          S.UI.simulate(countdown);
         }
       }
     });
 
+    function displayNextText() {
+      if (textIndex < textArray.length) {
+        S.UI.simulate(textArray[textIndex]);
+        startTime = new Date().getTime(); // 更新开始时间为当前时间
+        textIndex++;
+      }
+    }
   }
 };
 
