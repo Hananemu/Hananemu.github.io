@@ -1,1 +1,15 @@
-
+*{margin: 0;padding: 0;font-family: '微软雅黑';}
+.header{width: 1600px;height: 30px;margin: 0 auto;}
+ul,li{list-style: none;/*去掉列表前的黑点样式*/}
+a{text-decoration: none;}
+/*添加导航栏的背景图片*/
+.daohang{width: 100%;min-width: 1200px;margin: 0 auto;background: black;height: 57px;}
+/*设置导航栏样式*/
+.nav{width: 1600px;margin: 0 auto;overflow: hidden;}
+.nav ul li {float: left;margin-top: -1px;}
+.nav ul li a {width: 130px;height: 52px;text-align: center;line-height: 40px;display: block;color: #FFFFFF;font-size: 18px;margin: 0 1.5px;padding-top: 5px;}
+.nav ul li:hover{background: rgb(168, 8, 8);}
+.nav ul li ul {position: absolute;display: none;}
+.nav ul li ul li {float: none;height: 38px;}
+.nav ul li ul li a{border-right: none;border-top: 1px dotted #ccc;background: rgb(215, 17, 17);font-size: 16px;padding-top: 0px;height: 38px;}
+.nav ul li:hover ul{display: block;z-index: 999999999;}
