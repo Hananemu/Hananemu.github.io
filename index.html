@@ -1,87 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 响应式设计 -->
-  <title>Hananemu的网页</title>
-  <style type="text/css">
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    #box {
-      background-color: #ADD8E6; /* 浅蓝色背景 */
-      padding: 2%;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 600px; /* 最大宽度 */
-      width: 100%; /* 宽度 */
-    }
-
-    #box ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    #box ul li {
-      width: calc(25% - 4%); /* 计算宽度，减去间距 */
-      height: 8vh;
-      text-align: center;
-      line-height: 8vh;
-      float: left;
-      margin: 1%;
-      background-color: #FFFFE0; /* 浅黄色背景 */
-      border-radius: 5px;
-      transition: background-color 0.3s, transform 0.3s; /* 添加变换效果 */
-    }
-
-    #box ul li.strong {
-      font-weight: bold;
-      background-color: #D3D3D3; /* 强调项颜色 */
-    }
-
-    #box ul li:hover {
-      background-color: #E0E0E0; /* 悬停颜色 */
-      transform: scale(1.05); /* 放大效果 */
-    }
-
-    #box ul li a {
-      text-decoration: none;
-      color: black;
-      display: block;
-      height: 100%;
-    }
-
-    #box ul li:hover a {
-      color: #333;
-    }
-
-    @media (max-width: 600px) { /* 响应式设计 */
-      #box ul li {
-        width: calc(50% - 2%); /* 小屏幕时，每个项占50% */
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div id="box">
-    <ul>
-      <li class="strong">游戏</li>
-      <li><a href="guess.html#guess">猜数字</a></li>
-      <li><a href="card.html#card">抽卡模拟器</a></li>
-      <li><a href="HappyNewYear.html">新年快乐</a></li>
-      <li><a href="Happybirthday/index.html">生日快乐</a></li>
-    </ul>
-  </div>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <title>花眠的第一个网页</title>
+        <link rel="stylesheet" href="public.css">
+    </head>
+    <body>
+        <header>
+            <div class="daohang">
+                <div class="nav">
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">游戏</a>
+                            <ul>
+                                <li><a href="https://hananemu.github.io/guess.html#guess">猜数字</a></li>
+                                <li><a href="https://hananemu.github.io/card.html#card">抽卡模拟器</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">游戏外挂</a>
+                            <ul>
+                                <li><a href="https://flingtrainer.com/">风灵月影</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">编程学习</a>
+                            <ul>
+                                <li><a href="https://leetcode.cn/">力扣网</a></li>
+                                <li><a href="https://www.w3ccoo.com/">w3ccoo教程</a></li>
+                                <li><a href="https://www.csdn.net/">CSDN</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="https://www.toutiao.com/">热点关注</a></li>
+                        <li><a href="https://www.gov.cn/">政策解读</a></li>
+                        <li><a href="#">公益捐赠</a></li>
+                        <li><a href="#">在线调查</a></li>
+                        <li><a href="#">我要留言</a>
+                            <ul>
+                                <li><a href="#">突发事件</a></li>
+                                <li><a href="#">百姓呼声</a></li>
+                                <li><a href="#">建言献策</a></li>
+                                <li><a href="#">代表直通车</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">注册加入</a>
+                            <ul>
+                                <li><a href="#">个人加入</a></li>
+                                <li><a href="#">企业加入</a></li>
+                            </ul>                        
+                        </li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    </body>
 </html>
