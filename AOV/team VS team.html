@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>随机分配队伍PK</title>
+<style>
+  body {
+    font-family: '微软雅黑', Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+  }
+  textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #4cae4c;
+  }
+  .result {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #5cb85c;
+  }
+  .vs {
+    margin-bottom: 10px;
+    animation: pop-in 0.5s ease forwards;
+    opacity: 0;
+  }
+  @keyframes pop-in {
+    to {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>随机分配队伍PK</h2>
+  <textarea id="teamInput" placeholder="输入队伍名称，每行一个"></textarea>
+  <button onclick="generateMatch()">生成PK</button>
+  <div class="result" id="matchResult"></div>
+</div>
+
+<script>
+// 生成PK的函数
+function generateMatch() {
+  const teamInput = document.getElementById('teamInput').value;
+  const teams = teamInput.split('\n').map(team => team.trim()).filter(team => team !== '');
+  if (teams.length < 2) {
+    alert('请至少输入两个队伍名称');
+    return;
+  }
+
+  // 随机打乱队伍顺序
+  const shuffledTeams = shuffle(teams);
+
+  // 显示结果
+  const resultDiv = document.getElementById('matchResult');
+  resultDiv.innerHTML = ''; // 清除之前的结果
+
+  // 两两配对队伍
+  for (let i = 0; i < shuffledTeams.length / 2; i++) {
+    const team1 = shuffledTeams[2 * i];
+    const team2 = shuffledTeams[2 * i + 1];
+    const vsDiv = document.createElement('div');
+    vsDiv.className = 'vs';
+    vsDiv.textContent = `${team1} vs ${team2}`;
+    resultDiv.appendChild(vsDiv);
+  }
+}
+
+// 洗牌函数，用于随机化队伍顺序
+function shuffle(array) {
+  var m = array.length, t, i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  return array;
+}
+</script>
+
+</body>
+</html>
+

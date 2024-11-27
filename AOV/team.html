@@ -1,1 +1,138 @@
-s
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王者荣耀队伍分配</title>
+<style>
+  /* 页面基本样式 */
+  body {
+    font-family: '微软雅黑', Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  h2 {
+    text-align: center;
+    color: #5cb85c;
+  }
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+    font-size: 16px;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #4cae4c;
+  }
+  #results {
+    margin-top: 20px;
+  }
+  .team {
+    background-color: #e8e8e8;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .member {
+    padding: 8px 12px;
+    background-color: #d0d0d0;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>队伍分配</h2>
+  <textarea id="memberInput" placeholder="输入参赛人员姓名，每行一个名字"></textarea>
+  <button onclick="assignTeams()">分配队伍</button>
+  <div id="results"></div>
+</div>
+
+<script>
+// 分配队伍的函数
+function assignTeams() {
+  var membersInput = document.getElementById('memberInput').value;
+  var members = membersInput.split('\n').map(function(member) {
+    return member.trim();
+  }).filter(function(member) {
+    return member !== '';
+  });
+  var teams = [];
+  var teamSize = 6;
+  
+  // 洗牌函数，用于随机化成员顺序
+  function shuffle(array) {
+    var m = array.length, t, i;
+    while (m) {
+      i = Math.floor(Math.random() * m--);
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+    return array;
+  }
+
+  // 打乱成员顺序并创建队伍
+  shuffle(members);
+  for (var i = 0; i < members.length; i++) {
+    var teamIndex = Math.floor(i / teamSize);
+    if (!teams[teamIndex]) {
+      teams[teamIndex] = [];
+    }
+    teams[teamIndex].push(members[i]);
+  }
+
+  // 显示结果
+  var resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = ''; // 清除之前的结果
+  teams.forEach(function(team, index) {
+    var teamDiv = document.createElement('div');
+    teamDiv.className = 'team';
+    teamDiv.innerHTML = '队伍 ' + (index + 1) + ': ';
+    team.forEach(function(member) {
+      var memberDiv = document.createElement('div');
+      memberDiv.className = 'member';
+      memberDiv.textContent = member;
+      teamDiv.appendChild(memberDiv);
+    });
+    resultsDiv.appendChild(teamDiv);
+  });
+}
+</script>
+
+</body>
+</html>
+
