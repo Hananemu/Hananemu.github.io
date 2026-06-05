@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skills = [
+  { category: '引擎', items: ['Unreal Engine 5', 'Unity'] },
+  { category: '语言', items: ['C++', 'C#', 'TypeScript', 'Python'] },
+  { category: '图形学', items: ['HLSL/GLSL', 'Shader Graph', 'Niagara VFX'] },
+  { category: '工具链', items: ['Git', 'CMake', 'CI/CD', 'Neovim', '终端自动化'] },
+  { category: '架构', items: ['ECS', 'GAS', '状态机', '行为树', '事件驱动'] },
+];
+---
+
+<BaseLayout title="关于我">
+  <h1 style="margin-bottom:0.5rem;">关于我</h1>
+  <p style="color:var(--color-text-muted); margin-bottom:2rem; max-width:640px;">
+    游戏引擎开发者，热衷于底层系统架构与性能优化。独立游戏制作者，相信技术是表达创意的最佳载体。
+  </p>
+
+  <section style="margin-bottom:2.5rem;">
+    <h2 style="margin-bottom:1rem;">技术栈</h2>
+    <div style="display:grid; gap:1rem;">
+      {skills.map(({ category, items }) => (
+        <div class="card" style="padding:1rem 1.2rem;">
+          <span style="font-family:var(--font-mono); color:var(--color-accent); font-size:0.85rem; display:block; margin-bottom:0.4rem;">
+            {category}
+          </span>
+          <div class="tags">
+            {items.map((item) => <span class="tag">{item}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <h2 style="margin-bottom:1rem;">联系方式</h2>
+    <div class="card" style="padding:1rem 1.2rem;">
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
+        <li>
+          <span style="color:var(--color-text-muted); font-family:var(--font-mono); font-size:0.85rem;">GitHub: </span>
+          <a href="https://github.com/Hananemu" target="_blank" rel="noopener">github.com/Hananemu</a>
+        </li>
+        <li>
+          <span style="color:var(--color-text-muted); font-family:var(--font-mono); font-size:0.85rem;">Email: </span>
+          <a href="mailto:hananemu@outlook.com">hananemu@outlook.com</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

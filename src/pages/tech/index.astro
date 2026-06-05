@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('tech'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="技术博客">
+  <h1 style="margin-bottom:0.3rem;">技术博客</h1>
+  <p style="color:var(--color-text-muted); margin-bottom:2rem;">
+    UE5 底层架构、Unity 性能优化、图形学 Shader、终端自动化工具链等硬核技术内容。
+  </p>
+
+  {posts.length > 0 ? (
+    <div style="display:grid; gap:1rem;">
+      {posts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          tags={post.data.tags}
+          href={`/tech/${post.id}`}
+        />
+      ))}
+    </div>
+  ) : (
+    <p style="color:var(--color-text-muted);">暂无文章，敬请期待。</p>
+  )}
+</BaseLayout>

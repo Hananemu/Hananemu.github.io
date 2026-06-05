@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('devlog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="开发日志">
+  <h1 style="margin-bottom:0.3rem;">开发日志</h1>
+  <p style="color:var(--color-text-muted); margin-bottom:2rem;">
+    独立游戏开发过程记录：系统架构、机制实现、高风险高回报设计。
+  </p>
+
+  {posts.length > 0 ? (
+    <div style="display:grid; gap:1rem;">
+      {posts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          tags={post.data.tags}
+          href={`/devlog/${post.id}`}
+        />
+      ))}
+    </div>
+  ) : (
+    <p style="color:var(--color-text-muted);">暂无日志，敬请期待。</p>
+  )}
+</BaseLayout>

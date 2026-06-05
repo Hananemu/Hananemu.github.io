@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  href?: string;
+  featured?: boolean;
+}
+
+const { title, description, tags, href, featured = false } = Astro.props;
+---
+
+<div class={`card ${featured ? 'featured' : ''}`}>
+  {featured && <span class="featured-badge">Featured</span>}
+  <h3 style="margin-bottom:0.4rem;">
+    {href ? <a href={href}>{title}</a> : title}
+  </h3>
+  <p style="font-size:0.9rem; color:var(--color-text-muted); margin-bottom:0.8rem;">{description}</p>
+  <div class="tags">
+    {tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+</div>
+
+<style>
+  .featured {
+    border-color: var(--color-accent);
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute;
+    top: -0.6rem;
+    right: 1rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+  }
+</style>

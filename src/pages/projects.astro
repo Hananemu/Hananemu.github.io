@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    title: '《黄金替罪羊》— 2D 解谜游戏',
+    description: '基于 Unity 引擎的 2D 解谜游戏，核心玩法围绕"替罪羊"机制展开。采用状态机驱动的角色控制系统与自定义物理交互层，支持动态关卡加载与事件驱动叙事。',
+    tags: ['Unity', 'C#', '状态机', '解谜设计', '2D'],
+    featured: true,
+  },
+  {
+    title: 'UE5.5 ARPG 战斗框架',
+    description: '基于 Unreal Engine 5.5 的动作 RPG 战斗系统框架。实现 Gameplay Ability System (GAS) 驱动的技能管线、动作取消窗口、锁定/自由混合相机系统，以及模块化敌人 AI 行为树。',
+    tags: ['UE5.5', 'C++', 'GAS', '行为树', 'ARPG'],
+    featured: true,
+  },
+];
+---
+
+<BaseLayout title="项目展示">
+  <h1 style="margin-bottom:0.3rem;">项目展示</h1>
+  <p style="color:var(--color-text-muted); margin-bottom:2rem;">
+    独立游戏项目与技术框架，聚焦引擎深度应用与系统架构设计。
+  </p>
+
+  <div style="display:grid; gap:1.5rem;">
+    {projects.map((project) => (
+      <ProjectCard
+        title={project.title}
+        description={project.description}
+        tags={project.tags}
+        featured={project.featured}
+      />
+    ))}
+  </div>
+</BaseLayout>

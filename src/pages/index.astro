@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const techPosts = (await getCollection('tech'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const devlogs = (await getCollection('devlog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="首页">
+  <section style="padding:3rem 0 2rem;">
+    <p style="font-family:var(--font-mono); color:var(--color-accent); font-size:0.85rem; margin-bottom:0.5rem;">
+      game_dev / engine_tech / indie
+    </p>
+    <h1 style="margin-bottom:0.5rem;">Hananemu</h1>
+    <p style="color:var(--color-text-muted); max-width:560px;">
+      游戏引擎开发者，专注于底层架构、性能优化与独立游戏开发。记录技术实践与项目迭代过程。
+    </p>
+  </section>
+
+  <section style="margin-bottom:3rem;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+      <h2>技术文章</h2>
+      <a href="/tech" style="font-size:0.85rem;">查看全部 &rarr;</a>
+    </div>
+    {techPosts.length > 0 ? (
+      <div style="display:grid; gap:1rem;">
+        {techPosts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            tags={post.data.tags}
+            href={`/tech/${post.id}`}
+          />
+        ))}
+      </div>
+    ) : (
+      <p style="color:var(--color-text-muted);">暂无文章。</p>
+    )}
+  </section>
+
+  <section>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+      <h2>开发日志</h2>
+      <a href="/devlog" style="font-size:0.85rem;">查看全部 &rarr;</a>
+    </div>
+    {devlogs.length > 0 ? (
+      <div style="display:grid; gap:1rem;">
+        {devlogs.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            tags={post.data.tags}
+            href={`/devlog/${post.id}`}
+          />
+        ))}
+      </div>
+    ) : (
+      <p style="color:var(--color-text-muted);">暂无日志。</p>
+    )}
+  </section>
+</BaseLayout>

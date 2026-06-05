@@ -1,0 +1,52 @@
+---
+const navLinks = [
+  { href: '/', label: '首页' },
+  { href: '/tech', label: '技术博客' },
+  { href: '/devlog', label: '开发日志' },
+  { href: '/projects', label: '项目展示' },
+  { href: '/about', label: '关于我' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header>
+  <nav class="container" style="display:flex; align-items:center; justify-content:space-between; height:3.5rem;">
+    <a href="/" style="font-family:var(--font-mono); font-weight:700; font-size:1.1rem; color:var(--color-text);">
+      HN<span style="color:var(--color-accent)">:</span>~
+    </a>
+    <ul style="display:flex; gap:1.5rem; list-style:none;">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            style={currentPath === href || (href !== '/' && currentPath.startsWith(href))
+              ? 'color:var(--color-accent);'
+              : 'color:var(--color-text-muted);'}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  a {
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  a:hover {
+    opacity: 1;
+    color: var(--color-accent) !important;
+  }
+</style>
