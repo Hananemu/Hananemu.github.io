@@ -11,18 +11,23 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header>
-  <nav class="container" style="display:flex; align-items:center; justify-content:space-between; height:3.5rem;">
-    <a href="/" style="font-family:var(--font-mono); font-weight:700; font-size:1.1rem; color:var(--color-text);">
-      HN<span style="color:var(--color-accent)">:</span>~
+  <nav class="container nav-bar">
+    <a href="/" class="logo">
+      HN<span>:</span>~
     </a>
-    <ul style="display:flex; gap:1.5rem; list-style:none;">
+    <button class="menu-toggle" aria-label="菜单" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+    <ul class="nav-links">
       {navLinks.map(({ href, label }) => (
         <li>
           <a
             href={href}
-            style={currentPath === href || (href !== '/' && currentPath.startsWith(href))
-              ? 'color:var(--color-accent);'
-              : 'color:var(--color-text-muted);'}
+            class:list={[{ active: currentPath === href || (href !== '/' && currentPath.startsWith(href)) }]}
           >
             {label}
           </a>
@@ -31,6 +36,15 @@ const currentPath = Astro.url.pathname;
     </ul>
   </nav>
 </header>
+
+<script>
+  const btn = document.querySelector('.menu-toggle');
+  const links = document.querySelector('.nav-links');
+  btn?.addEventListener('click', () => {
+    const open = links?.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+</script>
 
 <style>
   header {
@@ -41,12 +55,73 @@ const currentPath = Astro.url.pathname;
     z-index: 100;
     backdrop-filter: blur(8px);
   }
-  a {
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.5rem;
+  }
+  .logo {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+  .logo span { color: var(--color-accent); }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
     font-size: 0.9rem;
+    color: var(--color-text-muted);
     transition: color 0.2s;
   }
-  a:hover {
+  .nav-links a:hover,
+  .nav-links a.active {
     opacity: 1;
-    color: var(--color-accent) !important;
+    color: var(--color-accent);
+  }
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    color: var(--color-text);
+    padding: 0.35rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 3.5rem;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0.5rem 0;
+    }
+    .nav-links.open {
+      display: flex;
+    }
+    .nav-links li {
+      padding: 0 1.5rem;
+    }
+    .nav-links a {
+      display: block;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-links li:last-child a {
+      border-bottom: none;
+    }
   }
 </style>
