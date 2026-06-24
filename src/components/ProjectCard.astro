@@ -5,9 +5,10 @@ interface Props {
   tags: string[];
   href?: string;
   featured?: boolean;
+  cta?: { label: string; href: string };
 }
 
-const { title, description, tags, href, featured = false } = Astro.props;
+const { title, description, tags, href, featured = false, cta } = Astro.props;
 ---
 
 <div class={`card ${featured ? 'featured' : ''}`}>
@@ -19,6 +20,9 @@ const { title, description, tags, href, featured = false } = Astro.props;
   <div class="tags">
     {tags.map((tag) => <span class="tag">{tag}</span>)}
   </div>
+  {cta && (
+    <a href={cta.href} class="cta-btn">{cta.label}</a>
+  )}
 </div>
 
 <style>
@@ -37,5 +41,22 @@ const { title, description, tags, href, featured = false } = Astro.props;
     padding: 0.15rem 0.5rem;
     border-radius: 3px;
     font-family: var(--font-mono);
+  }
+  .cta-btn {
+    display: block;
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 6px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .cta-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
   }
 </style>

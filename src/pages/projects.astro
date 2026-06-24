@@ -10,6 +10,13 @@ const projects = [
     featured: true,
   },
   {
+    title: '《六角阵地 (HexMines)》 — 无猜逻辑扫雷',
+    description: '基于 Godot 4 的六边形战术扫雷游戏。实现 100% 纯逻辑推导的无猜求解器算法与大地图战术视口。',
+    tags: ['Godot', 'GDScript', '算法', 'WebAssembly'],
+    featured: true,
+    cta: { label: '🎮 在线试玩', href: '/play/hexmines' },
+  },
+  {
     title: 'UE5.5 ARPG 战斗框架',
     description: '基于 Unreal Engine 5.5 的动作 RPG 战斗系统框架。实现 Gameplay Ability System (GAS) 驱动的技能管线、动作取消窗口、锁定/自由混合相机系统，以及模块化敌人 AI 行为树。',
     tags: ['UE5.5', 'C++', 'GAS', '行为树', 'ARPG'],
@@ -31,6 +38,7 @@ const projects = [
         description={project.description}
         tags={project.tags}
         featured={project.featured}
+        cta={project.cta}
       />
     ))}
   </div>
